@@ -1,16 +1,22 @@
-apply plugin: 'java'
-apply plugin: 'checkstyle'
-apply plugin: 'findbugs'
-
-repositories {
-  jcenter()
+plugins {
+  id 'java'
 }
 
-dependencies {
-  testCompile 'junit:junit:4.12'
+allprojects {
+  apply plugin: 'java'
+
+  java {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  repositories {
+    mavenCentral()
+  }
+
+  dependencies {
+    testImplementation 'junit:junit:4.12'
+  }
 }
 
-checkstyle {
-  configFile "$rootDir/checkstyle.xml" as File
-  toolVersion = '6.10.1'
-}
+

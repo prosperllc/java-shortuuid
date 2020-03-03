@@ -24,6 +24,22 @@ public UUID getUuid(String shortUuid) {
 }
 ```
 
+## Prosper-Specific Modifications
+
+Functionally, there are no changes in our fork. But there have been project modifications to suit our needs:
+
+1. Updated project to use Gradle wrapper
+2. Changed project structure to support multiple modules, and moved the library source to the `lib` module
+3. Added the `cli` module to the project, which contains the CLI wrapper around the library (see following section)
+4. Removed `checkstyle` and `findbugs` plugins. They were causing more trouble than they were worth for our needs.
+
+## CLI Wrapper
+
+This module is a CLI wrapper around the main library. When the resulting .jar is executed, it will use the library to generate a new short UUID, and output it to stdout.
+
+To use, run `java -jar short-uuid-cli.jar`
+To build the executable jar, run `gradlew shadowJar`. It can be found in `<project-root>/cli/build/libs`.
+
 ## License
 
 MIT
